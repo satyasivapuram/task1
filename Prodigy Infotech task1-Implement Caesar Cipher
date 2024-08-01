@@ -1,0 +1,41 @@
+def caesar_cipher_encrypt(text, shift):
+    encrypted_text = []
+    
+    for char in text:
+        if char.isalpha():
+            shift_amount = shift % 26
+            if char.islower():
+                start = ord('a')
+                shifted = (ord(char) - start + shift_amount) % 26
+                encrypted_char = chr(start + shifted)
+            elif char.isupper():
+                start = ord('A')
+                shifted = (ord(char) - start + shift_amount) % 26
+                encrypted_char = chr(start + shifted)
+            encrypted_text.append(encrypted_char)
+        else:
+            encrypted_text.append(char)
+    
+    return ''.join(encrypted_text)
+
+def main():
+    print("Caesar Cipher Encryption")
+    
+    # Input the message and shift value
+    message = input("Enter the message to encrypt: ")
+    shift = int(input("Enter the shift value (integer): "))
+    
+    # Encrypt the message
+    encrypted_message = caesar_cipher_encrypt(message, shift)
+    
+    # Print the results
+    print("\nEncrypted Message:")
+    print(encrypted_message)
+    print("\nDescription:")
+    print("The Caesar Cipher shifts each letter by the given shift value.")
+    print(f"Original message: {message}")
+    print(f"Shift value: {shift}")
+    print(f"Encrypted message: {encrypted_message}")
+
+if __name__ == "__main__":
+    main()
